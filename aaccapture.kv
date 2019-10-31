@@ -26,6 +26,9 @@ BoxLayout:
                 text: 'Toggle sourcecode'
                 icon: 'data/icons/gear.png'
                 #on_release: app.toggle_source_code()
+    Button:
+        text: 'Settings'
+        on_release: app.open_settings()
 
     ScreenManager:
         id: sm

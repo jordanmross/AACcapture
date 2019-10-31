@@ -1,0 +1,48 @@
+[
+    {
+        "type": "string",
+        "title": "Clinic Name",
+        "desc": "Name of the clinic",
+        "section": "Clinic",
+        "key": "name"
+    },
+    {
+        "type": "title",
+        "title": "Address"
+    },
+    {
+        "type": "string",
+        "title": "Address 1",
+        "desc": "",
+        "section": "Clinic",
+        "key": "address1"
+    },
+    {
+        "type": "string",
+        "title": "Address 2",
+        "desc": "",
+        "section": "Clinic",
+        "key": "address2"
+    },
+    {
+        "type": "string",
+        "title": "City",
+        "desc": "",
+        "section": "Clinic",
+        "key": "city"
+    },
+    {
+        "type": "string",
+        "title": "State Abbreviation",
+        "desc": "",
+        "section": "Clinic",
+        "key": "state"
+    },
+    {
+        "type": "numeric",
+        "title": "Zip Code",
+        "desc": "",
+        "section": "Clinic",
+        "key": "zip"
+    }
+]
