@@ -1,0 +1,35 @@
+#:kivy 1.8.0
+#:import KivyLexer kivy.extras.highlight.KivyLexer
+#:import Factory kivy.factory.Factory
+
+BoxLayout:
+    orientation: 'vertical'
+
+    canvas.before:
+        Color:
+            rgb: .6, .6, .6
+        Rectangle:
+            size: self.size
+            source: 'data/background.png'
+
+    ActionBar:
+
+        ActionView:
+            id: av
+            ActionPrevious:
+                with_previous: False
+                app_icon: ''
+                title: 'AEC Capture System'# + ('' if not app.current_title else ' - {}'.format(app.current_title))
+                #on_release: app.go_hierarchy_previous()
+
+            ActionToggleButton:
+                text: 'Toggle sourcecode'
+                icon: 'data/icons/gear.png'
+                #on_release: app.toggle_source_code()
+
+    ScreenManager:
+        id: sm
+        on_current_screen:
+            # #spnr.text = args[1].name
+            # idx = app.screen_names.index(args[1].name)
+            # if idx > -1: app.hierarchy.append(idx)
