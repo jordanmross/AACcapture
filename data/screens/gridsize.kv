@@ -1,0 +1,22 @@
+ShowcaseScreen:
+    name: 'ShippingAddress'
+
+    TextInput:
+        size_hint_y: None
+        height: '32dp'
+        multiline: False
+        text: 'x'
+    Label:
+        text: 'x'
+        size_hint_y: None
+        height: '48dp'
+    TextInput:
+        size_hint_y: None
+        height: '32dp'
+        multiline: False
+        text: 'y'
+    Button:
+        size_hint_y: None
+        height: '48dp'
+        text: 'Next'
+        on_release: app.go_next_screen()
