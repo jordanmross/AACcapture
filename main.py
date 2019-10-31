@@ -7,7 +7,7 @@ from kivy.properties import NumericProperty, StringProperty, BooleanProperty,\
 from kivy.clock import Clock
 from kivy.animation import Animation
 from kivy.uix.screenmanager import Screen
-from wifimgr import WifiInterface
+#from wifimgr import WifiInterface
 from kivy.uix.image import Image, AsyncImage
 from picamera import PiCamera
 from time import sleep
