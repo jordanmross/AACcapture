@@ -1,0 +1,32 @@
+AACCaptureScreen:
+    name: 'ImageCheck'
+
+    BoxLayout:
+        orientation: 'vertical'
+        #pos_hint: {'y': .4}
+
+        Image:
+            source: '/home/pi/AACcapture/data/captures/lowrescapture.jpg'
+            size: 400, 300
+            
+            
+        Label:
+            text: 'Image captured. Please confirm image looks appropriate.'
+            size_hint_y: None
+            height: '48dp'
+
+        BoxLayout:
+
+            height: 50
+            size_hint_y: None
+
+            Button:
+                size_hint_y: None
+                height: '48dp'
+                text: 'Retry'
+                on_release: app.go_previous_screen() 
+            Button:
+                size_hint_y: None
+                height: '48dp'
+                text: 'Confirm'
+                on_release: app.go_next_screen() 

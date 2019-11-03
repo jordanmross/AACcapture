@@ -1,9 +1,15 @@
-ShowcaseScreen:
+AACCaptureScreen:
     name: 'Start'
 
-    Button:
-        size_hint_y: None
-        height: '200dp'
-        text: 'Start'
-        font_size: 40
-        on_release: app.go_next_screen()
+    BoxLayout:
+        orientation: 'vertical'
+        padding: '100dp'
+        pos_hint: {'y': .05}
+
+        Button:
+            size_hint_y: None
+            height: '200dp'
+            text: 'Start'
+            font_size: 40
+            pos_hint: {'y': .3}
+            on_release: app.go_next_screen()

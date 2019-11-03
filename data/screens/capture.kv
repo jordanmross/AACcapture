@@ -1,7 +1,15 @@
-ShowcaseScreen:
+AACCaptureScreen:
     name: 'Capture'
     
-    Button:
-        size_hint_y: None
-        height: '48dp'
-        text: 'Capture'
+    BoxLayout:
+        orientation: 'vertical'
+        padding: '100dp'
+        pos_hint: {'y': .05}
+
+        Button:
+            size_hint_y: None
+            height: '200dp'
+            text: 'Capture'
+            font_size: 40
+            pos_hint: {'y': .3}
+            on_release: app.capture_image()

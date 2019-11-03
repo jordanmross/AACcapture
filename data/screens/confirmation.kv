@@ -1,7 +1,32 @@
-ShowcaseScreen:
+AACCaptureScreen:
     name: 'Confirmation'
 
-    Label:
-        text: 'Confirmed'
+    BoxLayout:
+        orientation: 'vertical'
+        pos_hint: {'y': .3}
+        
+        Label:
+            text: 'Parent Name:'
+            size_hint_y: None
+            height: '48dp'
+
+        Label:
+            text: 'Parent Email:'
+            size_hint_y: None
+            height: '48dp'
+
+        Label:
+            text: 'Shipping Address:'
+            size_hint_y: None
+            height: '48dp'
+            
+        Label:
+            text: 'Grid Size:'
+            size_hint_y: None
+            height: '48dp'
+
+    Button:
         size_hint_y: None
         height: '48dp'
+        text: 'Finish'
+        on_release: app.go_next_screen() 

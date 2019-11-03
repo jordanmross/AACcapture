@@ -1,0 +1,27 @@
+AACCaptureScreen:
+    name: 'Instructions'
+
+    BoxLayout:
+        orientation: 'vertical'
+        #pos_hint: {'y': .4}
+
+        Image:
+            source: 'data/position.jpg'
+            size: 400, 300
+            
+        Label:
+            text: 'Please open the AAC application, and place device as shown.'
+            font_size: 20
+            size_hint_y: None
+            height: '48dp'
+
+        BoxLayout:
+
+            height: 50
+            size_hint_y: None
+
+            Button:
+                size_hint_y: None
+                height: '48dp'
+                text: 'Next'
+                on_release: app.go_next_screen() 

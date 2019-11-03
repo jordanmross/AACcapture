@@ -1,31 +1,47 @@
-ShowcaseScreen:
+AACCaptureScreen:
     name: 'ShippingAddress'
 
-    TextInput:
-        size_hint_y: None
-        height: '32dp'
-        multiline: False
-        text: '123 Some Street'
-    TextInput:
-        size_hint_y: None
-        height: '32dp'
-        multiline: False
-        text: 'Apartment 1'
-    TextInput:
-        size_hint_y: None
-        height: '32dp'
-        multiline: False
-        text: 'Los Angeles' 
-    TextInput:
-        size_hint_y: None
-        height: '32dp'
-        multiline: False
-        text: 'California'  
-    TextInput:
-        size_hint_y: None
-        height: '32dp'
-        multiline: False
-        text: '91367'           
+    BoxLayout:
+        orientation: 'vertical'
+        padding: '100dp'
+        pos_hint: {'y': .1}
+
+        Button:
+            size_hint_y: None
+            height: '48dp'
+            text: 'Use Clinic Address'
+            on_release: app.fill_address()  
+        
+        TextInput:
+            size_hint_y: None
+            height: '32dp'
+            multiline: False
+            hint_text: '123 Some Street'
+
+        TextInput:
+            size_hint_y: None
+            height: '32dp'
+            multiline: False
+            hint_text: 'Apartment 1'
+
+        TextInput:
+            size_hint_y: None
+            height: '32dp'
+            multiline: False
+            hint_text: 'Los Angeles' 
+
+        TextInput:
+            size_hint_y: None
+            height: '32dp'
+            multiline: False
+            hint_text: 'California'  
+
+        TextInput:
+            size_hint_y: None
+            height: '32dp'
+            multiline: False
+            hint_text: '91367'        
+
     Button:
         size_hint_y: None
         height: '48dp'

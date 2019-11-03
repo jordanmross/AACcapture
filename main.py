@@ -9,11 +9,21 @@ from kivy.properties import NumericProperty, StringProperty, BooleanProperty,\
 from kivy.clock import Clock
 from kivy.animation import Animation
 from kivy.uix.screenmanager import Screen
-#from wifimgr import WifiInterface
+# from wifimgr import WifiInterface
 from kivy.uix.image import Image, AsyncImage
 from picamera import PiCamera
 from time import sleep
 from kivy.uix.settings import SettingsWithSidebar
+from PIL import Image
+
+
+class AACCaptureScreen(Screen):
+    fullscreen = BooleanProperty(False)
+    
+    def add_widget(self, *args):
+        if 'content' in self.ids:
+            return self.ids.content.add_widget(*args)
+        return super(AACCaptureScreen, self).add_widget(*args)
 
 
 class AACCaptureApp(App):
@@ -21,59 +31,74 @@ class AACCaptureApp(App):
     index = NumericProperty(-1)
     current_title = StringProperty()
     time = NumericProperty(0)
-    show_sourcecode = BooleanProperty(False)
-    sourcecode = StringProperty()
     screen_names = ListProperty([])
     hierarchy = ListProperty([])
 
-
     def build(self):
-        #config = self.config
+        # config = self.config
         self.title = 'hello world'
-        
+
         # The line below is optional. You could leave it out or use one of the
         # standard options, such as SettingsWithSidebar, SettingsWithSpinner
         # etc.
+
         self.settings_cls = SettingsWithSidebar
 
         Clock.schedule_interval(self._update_clock, 1 / 60.)
-        # self.screens = {}
-        # self.available_screens = [
-        #     'Start', 'Next','Capture']
-        # self.screen_names = self.available_screens
-        # curdir = dirname(__file__)
-        # self.available_screens = [join(curdir, 'data', 'screens',
-        #     '{}.kv'.format(fn).lower()) for fn in self.available_screens]
-        # #self.hide_widget(self.root.ids.sourcecode)
-        # self.go_next_screen()
-        
+        self.screens = {}
+        self.available_screens = [
+            'Start', 'ParentName', 'ShippingAddress', 'ParentEmail', 'GridSize',
+            'Instructions', 'Capture', 'ImageCheck', 'Confirmation']
+        self.screen_names = self.available_screens
+        curdir = dirname(__file__)
+        self.available_screens = [join(curdir, 'data', 'screens',
+             '{}.kv'.format(fn).lower()) for fn in self.available_screens]
+        #self.hide_widget(self.root.ids.sourcecode)
+        self.go_next_screen()
+
+    def getserial(self):
+        #Extract serial from cpuinfo file
+        cpuserial = "0000000000000000"
+        try:
+          f = open('/proc/cpuinfo','r')
+          for line in f:
+            if line[0:6]=='Serial':
+              cpuserial = line[10:26]
+          f.close()
+        except:
+          cpuserial = "ERROR000000000"
+        return cpuserial
+
+    def fill_address(self):
+        pass
+    
+    def capture_image(self):
+        camera = PiCamera()
+        camera.resolution = (3280, 2464)
+        sleep(2)
+        camera.capture('/home/pi/AACcapture/data/captures/capture.jpg')
+        camera.close()
+        self.resize_image()
+        self.go_next_screen()
+
+    def resize_image(self):
+        img = Image.open('/home/pi/AACcapture/data/captures/capture.jpg')
+        new_img = img.resize((400,300))
+        new_img.save("/home/pi/AACcapture/data/captures/lowrescapture.jpg", "JPEG", optimize=True)
 
     def build_config(self, config):
         config.setdefaults('Clinic', {
-            'name': '', 
-            'address1': '', 
-            'address2': '', 
-            'city': '', 
+            'name': '',
+            'address1': '',
+            'address2': '',
+            'city': '',
             'state': '',
             'zip': 00000})
         config.setdefaults('Device', {
             'deviceid': self.getserial()
         })
 
-    def getserial(self):
-        # Extract serial from cpuinfo file
-        cpuserial = "0000000000000000"
-        try:
-            f = open('/proc/cpuinfo','r')
-            for line in f:
-            if line[0:6]=='Serial':
-                cpuserial = line[10:26]
-            f.close()
-        except:
-            cpuserial = "ERROR000000000"
-
-        return cpuserial
-
+        
     def build_settings(self, settings):
         """
         Add our custom section to the default configuration object.
@@ -83,7 +108,31 @@ class AACCaptureApp(App):
         #     settings.add_json_panel('My Label', self.config, 'settings.json')
         
         settings.add_json_panel('Clinic', self.config, 'clinic_settings.json')
-        #settings.add_json_panel('section2', self.config, data=json)
+        settings.add_json_panel('Wifi', self.config, 'wifi_settings.json')
+        # settings.add_json_panel('section2', self.config, data=json)
+
+    def go_next_screen(self):
+        self.index = (self.index + 1) % len(self.available_screens)
+        screen = self.load_screen(self.index)
+        sm = self.root.ids.sm
+        sm.switch_to(screen, direction='left')
+        self.current_title = screen.name
+        #self.update_sourcecode()
+
+    def go_previous_screen(self):
+        self.index = (self.index - 1) % len(self.available_screens)
+        screen = self.load_screen(self.index)
+        sm = self.root.ids.sm
+        sm.switch_to(screen, direction='right')
+        self.current_title = screen.name
+        #self.update_sourcecode()    
+
+    def load_screen(self, index):
+        if index in self.screens:
+            return self.screens[index]
+        screen = Builder.load_file(self.available_screens[index])
+        self.screens[index] = screen
+        return screen
 
     def _update_clock(self, dt):
         self.time = time()

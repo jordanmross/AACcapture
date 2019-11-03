@@ -1,20 +1,46 @@
-ShowcaseScreen:
+AACCaptureScreen:
     name: 'ShippingAddress'
 
-    TextInput:
-        size_hint_y: None
-        height: '32dp'
-        multiline: False
-        text: 'x'
-    Label:
-        text: 'x'
-        size_hint_y: None
-        height: '48dp'
-    TextInput:
-        size_hint_y: None
-        height: '32dp'
-        multiline: False
-        text: 'y'
+    BoxLayout:
+        orientation: 'vertical'
+        #pos_hint: {'y': .4}
+
+        Image:
+            source: 'data/grid.jpg'
+            size: 300, 200
+            
+        Label:
+            text: 'Please enter the AAC grid size. The example above is 5x5.'
+            font_size: 20
+            size_hint_y: None
+            height: '48dp'
+
+        GridLayout:
+            orientation: 'vertical'
+            rows: 1
+            cols: 3
+            height: '100dp'
+            size_hint_y: None
+            width: '600dp'
+            size_hint_x: None
+            pos_hint: {'center_x':.5}
+            
+            TextInput:
+                size_hint_y: None
+                height: '32dp'
+                multiline: False
+                text: 'Rows'
+            Label:
+                text: 'x'
+                size_hint_y: None
+                height: '48dp'
+                width: '50dp'
+                size_hint_x: None
+            TextInput:
+                size_hint_y: None
+                height: '32dp'
+                multiline: False
+                text: 'Columns'
     Button:
         size_hint_y: None
         height: '48dp'

@@ -1,11 +1,17 @@
-ShowcaseScreen:
+AACCaptureScreen:
     name: 'ParentName'
 
-    TextInput:
-        size_hint_y: None
-        height: '32dp'
-        multiline: False
-        text: 'Parent Name'
+    BoxLayout:
+        orientation: 'vertical'
+        padding: '100dp'
+        pos_hint: {'y': .3}
+
+        TextInput:
+            size_hint_y: None
+            height: '32dp'
+            multiline: False
+            hint_text: 'Parent Name'
+            
     Button:
         size_hint_y: None
         height: '48dp'
