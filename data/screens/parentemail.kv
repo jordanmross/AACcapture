@@ -8,11 +8,14 @@ AACCaptureScreen:
 
         TextInput:
             size_hint_y: None
-            height: '32dp'
+            height: '50dp'
             multiline: False
             hint_text: 'someone@somewebsite.com'
+            font_size: 32
+
     Button:
         size_hint_y: None
-        height: '48dp'
+        height: '100dp'
         text: 'Next'
+        font_size: 40
         on_release: app.go_next_screen()

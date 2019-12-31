@@ -1,4 +1,6 @@
-AACCaptureScreen:
+#:kivy 1.0
+
+ParentNameScreen:
     name: 'ParentName'
 
     BoxLayout:
@@ -7,13 +9,16 @@ AACCaptureScreen:
         pos_hint: {'y': .3}
 
         TextInput:
+            id: text_parentname
             size_hint_y: None
-            height: '32dp'
+            height: '50dp'
             multiline: False
             hint_text: 'Parent Name'
+            font_size: 32
             
     Button:
         size_hint_y: None
-        height: '48dp'
+        height: '100dp'
         text: 'Next'
-        on_release: app.go_next_screen()
+        font_size: 40
+        on_release: root.go_next_screen()

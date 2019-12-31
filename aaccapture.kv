@@ -23,17 +23,18 @@ BoxLayout:
                 #on_release: app.go_hierarchy_previous()
 
             ActionButton:
-                text: 'Previous screen'
+                #text: 'Previous screen'
                 icon: 'data/icons/chevron-left.png'
                 on_release: app.go_previous_screen()
 
             ActionButton:
-                text: 'Next screen'
+                #text: 'Next screen'
                 icon: 'data/icons/chevron-right.png'
                 on_release: app.go_next_screen()
                 important: True
+                disabled: True
 
-            ActionToggleButton:
+            ActionButton:
                 text: 'Toggle sourcecode'
                 icon: 'data/icons/gear.png'
                 on_release: app.open_settings()

@@ -3,47 +3,67 @@ AACCaptureScreen:
 
     BoxLayout:
         orientation: 'vertical'
-        padding: '100dp'
+        padding: '60dp'
+        top_padding: '10dp'
         pos_hint: {'y': .1}
 
         Button:
             size_hint_y: None
-            height: '48dp'
-            text: 'Use Clinic Address'
-            on_release: app.fill_address()  
+            height: '40dp'
+            text: 'Click here to use Clinic Address'
+            font_size: 25
+            #top_padding: 40
+            on_release: app.fill_address() 
         
-        TextInput:
-            size_hint_y: None
-            height: '32dp'
-            multiline: False
-            hint_text: '123 Some Street'
+        Label:
+            text: ''
+            height: '8dp'
 
         TextInput:
             size_hint_y: None
-            height: '32dp'
+            height: '40dp'
             multiline: False
-            hint_text: 'Apartment 1'
+            hint_text: 'Street 1'
+            font_size: 25
 
         TextInput:
             size_hint_y: None
-            height: '32dp'
+            height: '40dp'
             multiline: False
-            hint_text: 'Los Angeles' 
+            hint_text: 'Street 2'
+            font_size: 25
 
         TextInput:
             size_hint_y: None
-            height: '32dp'
+            height: '40dp'
             multiline: False
-            hint_text: 'California'  
+            hint_text: 'City' 
+            font_size: 25
 
         TextInput:
             size_hint_y: None
-            height: '32dp'
+            height: '40dp'
             multiline: False
-            hint_text: '91367'        
+            hint_text: 'State'  
+            font_size: 25
+
+        TextInput:
+            size_hint_y: None
+            height: '40dp'
+            multiline: False
+            hint_text: 'Country' 
+            font_size: 25
+
+        TextInput:
+            size_hint_y: None
+            height: '40dp'
+            multiline: False
+            hint_text: 'Zip Code'     
+            font_size: 25
 
     Button:
         size_hint_y: None
-        height: '48dp'
+        height: '100dp'
         text: 'Next'
+        font_size: 40
         on_release: app.go_next_screen()  

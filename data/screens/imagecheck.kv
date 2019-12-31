@@ -1,4 +1,4 @@
-AACCaptureScreen:
+CheckScanScreen:
     name: 'ImageCheck'
 
     BoxLayout:
@@ -6,7 +6,8 @@ AACCaptureScreen:
         #pos_hint: {'y': .4}
 
         Image:
-            source: '/home/pi/AACcapture/data/captures/lowrescapture.jpg'
+            id: image
+            source: './test_pil.png'
             size: 400, 300
             
             
@@ -29,4 +30,4 @@ AACCaptureScreen:
                 size_hint_y: None
                 height: '48dp'
                 text: 'Confirm'
-                on_release: app.go_next_screen() 
+                on_release: app.go_next_screen(), app.lens_correction() 

@@ -1,5 +1,9 @@
-
-
+from modules.parentnamescreen import ParentNameScreen
+from modules.capsule import Capsule
+from modules.navigation import Navigation
+from modules.screenbase import ScreenBase
+from modules.scanscreen import ScanScreen
+from modules.checkscanscreen import CheckScanScreen
 from time import time
 from kivy.app import App
 from os.path import dirname, join
@@ -11,13 +15,12 @@ from kivy.animation import Animation
 from kivy.uix.screenmanager import Screen
 # from wifimgr import WifiInterface
 from kivy.uix.image import Image, AsyncImage
-from picamera import PiCamera
 from time import sleep
 from kivy.uix.settings import SettingsWithSidebar
 from PIL import Image
 
 
-class AACCaptureScreen(Screen):
+class AACCaptureScreen(ScreenBase):
     fullscreen = BooleanProperty(False)
     
     def add_widget(self, *args):
@@ -27,7 +30,7 @@ class AACCaptureScreen(Screen):
 
 
 class AACCaptureApp(App):
-
+    capsule = Capsule()
     index = NumericProperty(-1)
     current_title = StringProperty()
     time = NumericProperty(0)
@@ -72,14 +75,10 @@ class AACCaptureApp(App):
     def fill_address(self):
         pass
     
-    def capture_image(self):
-        camera = PiCamera()
-        camera.resolution = (3280, 2464)
-        sleep(2)
-        camera.capture('/home/pi/AACcapture/data/captures/capture.jpg')
-        camera.close()
-        self.resize_image()
-        self.go_next_screen()
+    def rotate_image(self):
+        img = Image.open("/home/pi/AACcapture/data/captures/capture.jpg")
+        img = img.rotate(180)
+        img.save("/home/pi/AACcapture/data/captures/capture.jpg")
 
     def resize_image(self):
         img = Image.open('/home/pi/AACcapture/data/captures/capture.jpg')
@@ -131,6 +130,11 @@ class AACCaptureApp(App):
         if index in self.screens:
             return self.screens[index]
         screen = Builder.load_file(self.available_screens[index])
+
+        if issubclass(type(screen), ScreenBase):
+            screen.navigation = self
+            screen.capsule = self.capsule
+
         self.screens[index] = screen
         return screen
 

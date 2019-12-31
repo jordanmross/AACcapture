@@ -1,4 +1,6 @@
-AACCaptureScreen:
+#:kivy 1.0
+
+ScanScreen:
     name: 'Capture'
     
     BoxLayout:
@@ -12,4 +14,4 @@ AACCaptureScreen:
             text: 'Capture'
             font_size: 40
             pos_hint: {'y': .3}
-            on_release: app.capture_image()
+            on_release: root.doScan()
