@@ -2,5 +2,5 @@ from modules.screenbase import ScreenBase
 
 class CheckScanScreen(ScreenBase):
 
-    def on_pre_enter(self):
+    def load(self):
         self.ids.image.reload()

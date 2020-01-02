@@ -1,4 +1,6 @@
-AACCaptureScreen:
+#:kivy 1.0
+
+ConfirmationScreen:
     name: 'Confirmation'
 
     BoxLayout:
@@ -6,21 +8,25 @@ AACCaptureScreen:
         pos_hint: {'y': .3}
         
         Label:
+            id: label_parentname
             text: 'Parent Name:'
             size_hint_y: None
             height: '48dp'
 
         Label:
+            id: label_parentemail
             text: 'Parent Email:'
             size_hint_y: None
             height: '48dp'
 
         Label:
+            id: label_shippingaddr
             text: 'Shipping Address:'
             size_hint_y: None
             height: '48dp'
             
         Label:
+            id: label_gridsize
             text: 'Grid Size:'
             size_hint_y: None
             height: '48dp'

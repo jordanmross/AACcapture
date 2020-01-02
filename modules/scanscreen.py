@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 
-from __future__ import print_function
 from modules.screenbase import ScreenBase
 import sane
 from PIL import Image
@@ -28,10 +27,14 @@ class ScanScreen(ScreenBase):
         devices = sane.get_devices()
         print('Available devices:', devices)
 
+        
+
         #
         # Open first device
         #
         dev = sane.open(devices[0][0])
+
+        dev.resolution=600
 
         #
         # Set some options
@@ -53,7 +56,6 @@ class ScanScreen(ScreenBase):
         # except:
         #     print('Cannot set scan area, using default')
 
-
         params = dev.get_parameters()
         print('Device parameters:', params)
 
@@ -61,8 +63,22 @@ class ScanScreen(ScreenBase):
         # Start a scan and get and PIL.Image object
         #
         dev.start()
-        im = dev.snap(progress=self.on_progress)
-        im.save('test_pil.png')
+        im = dev.snap()
+        
+        #
+        # Rotate Image 90 *
+        #
+        im = im.transpose(Image.ROTATE_90)
+
+        #
+        # Save the full image
+        #
+        im.save('full.png', compress_level=1)
+
+        #
+        # Resize for preview and save save
+        #
+        im.resize((885,636)).save('test_pil.png', compress_level=1)
 
         #
         # close the scanner device
@@ -72,7 +88,3 @@ class ScanScreen(ScreenBase):
         # Go to the next screen (preview)
         self.go_next_screen()
 
-    def on_progress(self, a, b, c):
-        print(a)
-        print(b)
-        print(c)

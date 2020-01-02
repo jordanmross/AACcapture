@@ -4,6 +4,7 @@ from modules.navigation import Navigation
 from modules.screenbase import ScreenBase
 from modules.scanscreen import ScanScreen
 from modules.checkscanscreen import CheckScanScreen
+from modules.confirmationscreen import *
 from time import time
 from kivy.app import App
 from os.path import dirname, join
@@ -29,7 +30,7 @@ class AACCaptureScreen(ScreenBase):
         return super(AACCaptureScreen, self).add_widget(*args)
 
 
-class AACCaptureApp(App):
+class AACCaptureApp(App, Navigation):
     capsule = Capsule()
     index = NumericProperty(-1)
     current_title = StringProperty()

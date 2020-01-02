@@ -1,7 +1,7 @@
 #from kivy.lang import Builder
 from kivy.uix.screenmanager import Screen
-from navigation import Navigation
-from capsule import Capsule
+from modules.navigation import Navigation
+from modules.capsule import Capsule
 
 class ScreenBase(Screen, Navigation):
     navigation = Navigation()
@@ -9,10 +9,16 @@ class ScreenBase(Screen, Navigation):
 
     print(navigation)
 
+    # Call the load and unload functions
+    def on_pre_enter(self):
+        self.load()
+    def on_pre_leave(self):
+        self.unload()
+
     def load(self):
         pass #load data from screen here
 
-    def close(self):
+    def unload(self):
         pass
 
     def check_can_next(self):
