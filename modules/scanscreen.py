@@ -4,11 +4,13 @@ from modules.screenbase import ScreenBase
 import sane
 from PIL import Image
 from time import sleep
-
+from modules.popup import MyPopup
 
 class ScanScreen(ScreenBase):
     
     def doScan(self):  
+        mp = MyPopup()
+        mp.A()
         #
         # Change these for 16bit / grayscale scans
         #
@@ -18,6 +20,7 @@ class ScanScreen(ScreenBase):
         #
         # Initialize sane
         #
+        #print(sane.version())
         ver = sane.init()
         print('SANE version:', ver)
 
@@ -63,7 +66,7 @@ class ScanScreen(ScreenBase):
         # Start a scan and get and PIL.Image object
         #
         dev.start()
-        im = dev.snap()
+        im = dev.snap(progress=ScanScreen.on_progress)
         
         #
         # Rotate Image 90 *
@@ -88,3 +91,6 @@ class ScanScreen(ScreenBase):
         # Go to the next screen (preview)
         self.go_next_screen()
 
+    def on_progress(a, b):
+        print(a/b)
+           
