@@ -6,6 +6,8 @@ class MyPopup():
     
     def A(self):
 
+
+        
         # create content and add to the popup
         content = Button(text='Close me!')
         

@@ -1,0 +1,29 @@
+#:kivy 2.0
+
+BoxLayout:
+    orientation: 'vertical'
+    name: 'pops'
+    padding: '100dp'
+    pos_hint: {'y': .05}
+    
+    
+    Label:
+        id: text_stage
+        text: 'Stage 0'
+
+    Label:
+        id: text_progress
+        text: '100% not started'
+
+    ProgressBar:
+        id: prog_main
+        value: 0
+        max: 100
+        
+    Button:
+        size_hint_y: None
+        height: '200dp'
+        text: 'Cancel'
+        font_size: 40
+        pos_hint: {'y': .3}
+        on_release: root.cancel()
